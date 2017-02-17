@@ -132,7 +132,17 @@ public class TedPermission {
         return this;
     }
 
+    public TedPermission setCustomView(int customViewRes) {
 
+        instance.customViewRes = customViewRes;
+        return this;
+    }
+
+    public TedPermission setCustomViewDeny(int customViewDenyRes) {
+
+        instance.customViewDenyRes = customViewDenyRes;
+        return this;
+    }
     public void check() {
 
 
