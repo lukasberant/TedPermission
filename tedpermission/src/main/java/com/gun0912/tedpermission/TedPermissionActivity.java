@@ -40,6 +40,8 @@ public class TedPermissionActivity extends AppCompatActivity {
     public static final String EXTRA_SETTING_BUTTON_TEXT = "setting_button_text";
     public static final String EXTRA_RATIONALE_CONFIRM_TEXT = "rationale_confirm_text";
     public static final String EXTRA_DENIED_DIALOG_CLOSE_TEXT = "denied_dialog_close_text";
+    public static final String EXTRA_CUSTOM_VIEW_RES = "custom_view_res";
+    public static final String EXTRA_CUSTOM_VIEW_DENY_RES = "custom_view_deny_res";
 
     String rationale_message;
     String denyMessage;
@@ -84,6 +86,8 @@ public class TedPermissionActivity extends AppCompatActivity {
 
             rationaleConfirmText = savedInstanceState.getString(EXTRA_RATIONALE_CONFIRM_TEXT);
             deniedCloseButtonText = savedInstanceState.getString(EXTRA_DENIED_DIALOG_CLOSE_TEXT);
+            customViewRes = savedInstanceState.getInt(EXTRA_CUSTOM_VIEW_RES, 0);
+            customViewDenyRes = savedInstanceState.getInt(EXTRA_CUSTOM_VIEW_DENY_RES, 0);
 
 
             settingButtonText = savedInstanceState.getString(EXTRA_SETTING_BUTTON_TEXT);
@@ -98,6 +102,9 @@ public class TedPermissionActivity extends AppCompatActivity {
             rationaleConfirmText = intent.getStringExtra(EXTRA_RATIONALE_CONFIRM_TEXT);
             deniedCloseButtonText = intent.getStringExtra(EXTRA_DENIED_DIALOG_CLOSE_TEXT);
             settingButtonText = intent.getStringExtra(EXTRA_SETTING_BUTTON_TEXT);
+            customViewRes = intent.getIntExtra(EXTRA_CUSTOM_VIEW_RES, 0);
+            customViewDenyRes = intent.getIntExtra(EXTRA_CUSTOM_VIEW_DENY_RES, 0);
+
 
         }
 
@@ -114,6 +121,8 @@ public class TedPermissionActivity extends AppCompatActivity {
         outState.putString(EXTRA_SETTING_BUTTON, deniedCloseButtonText);
         outState.putString(EXTRA_RATIONALE_CONFIRM_TEXT, rationaleConfirmText);
         outState.putString(EXTRA_SETTING_BUTTON_TEXT, settingButtonText);
+        outState.putInt(EXTRA_CUSTOM_VIEW_RES, customViewRes);
+        outState.putInt(EXTRA_CUSTOM_VIEW_DENY_RES, customViewDenyRes);
 
         super.onSaveInstanceState(outState);
     }
@@ -238,7 +247,7 @@ public class TedPermissionActivity extends AppCompatActivity {
     private void showRationaleDialog(final ArrayList<String> needPermissions) {
 
         new AlertDialog.Builder(this)
-                .setMessage(rationale_message)
+                .setView(customViewRes)
                 .setCancelable(false)
 
                 .setNegativeButton(rationaleConfirmText, new DialogInterface.OnClickListener() {
@@ -266,9 +275,8 @@ public class TedPermissionActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
 
-        builder.setMessage(denyMessage)
+        builder.setView(customViewDenyRes)
                 .setCancelable(false)
-
                 .setNegativeButton(deniedCloseButtonText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
