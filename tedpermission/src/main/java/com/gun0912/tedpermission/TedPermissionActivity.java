@@ -276,7 +276,7 @@ public class TedPermissionActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
 
-        builder.setView(customViewDenyRes)
+        builder.setMessage(denyMessage)
                 .setCancelable(false)
                 .setNegativeButton(deniedCloseButtonText, new DialogInterface.OnClickListener() {
                     @Override
