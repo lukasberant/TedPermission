@@ -139,7 +139,7 @@ public class TedPermission {
     }
 
     public TedPermission setCustomViewDeny(int customViewDenyRes) {
-
+ 
         instance.customViewDenyRes = customViewDenyRes;
         return this;
     }
