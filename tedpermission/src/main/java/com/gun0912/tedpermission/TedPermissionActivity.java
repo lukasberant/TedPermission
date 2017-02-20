@@ -275,7 +275,7 @@ public class TedPermissionActivity extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-
+        if(customViewDenyRes==0){
         builder.setMessage(denyMessage)
                 .setCancelable(false)
                 .setNegativeButton(deniedCloseButtonText, new DialogInterface.OnClickListener() {
@@ -284,7 +284,16 @@ public class TedPermissionActivity extends AppCompatActivity {
                         permissionDenied(deniedPermissions);
                     }
                 });
-
+        }else{
+         builder.setView(customViewDenyRes)
+                .setCancelable(false)
+                .setNegativeButton(deniedCloseButtonText, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        permissionDenied(deniedPermissions);
+                    }
+                }); 
+        }
         if (hasSettingButton) {
 
 
