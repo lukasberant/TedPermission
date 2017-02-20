@@ -53,7 +53,8 @@ public class TedPermissionActivity extends AppCompatActivity {
     String deniedCloseButtonText;
     String rationaleConfirmText;
     boolean isShownRationaleDialog;
-
+    private int customViewRes;
+    private int customViewDenyRes;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Dlog.d("");
