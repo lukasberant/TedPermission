@@ -56,6 +56,8 @@ public class TedPermissionActivity extends AppCompatActivity {
     boolean isShownRationaleDialog;
     private int customViewRes;
     private int customViewDenyRes;
+    private int mConfirmButtonColor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Dlog.d("");
