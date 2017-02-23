@@ -14,7 +14,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.WindowManager;
-
+import android.widget.Button;
 import com.gun0912.tedpermission.busevent.TedBusProvider;
 import com.gun0912.tedpermission.busevent.TedPermissionEvent;
 import com.gun0912.tedpermission.util.Dlog;
