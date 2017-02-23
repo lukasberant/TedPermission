@@ -143,6 +143,13 @@ public class TedPermission {
         instance.customViewDenyRes = customViewDenyRes;
         return this;
     }
+    
+     public TedPermission setConfirmButtonColor(int confirmButtonColor) {
+
+        instance.confirmButtonColor = confirmButtonColor;
+        return this;
+    }
+
     public void check() {
 
 
