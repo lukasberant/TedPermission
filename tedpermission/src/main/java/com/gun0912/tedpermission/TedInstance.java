@@ -25,6 +25,7 @@ public class TedInstance {
     Context context;
     public int customViewRes;
     public int customViewDenyRes;
+    public int confirmButtonColor;
 
 
     public TedInstance(Context context) {
@@ -53,6 +54,7 @@ public class TedInstance {
         intent.putExtra(TedPermissionActivity.EXTRA_SETTING_BUTTON_TEXT, settingButtonText);
         intent.putExtra(TedPermissionActivity.EXTRA_CUSTOM_VIEW_RES,customViewRes);
         intent.putExtra(TedPermissionActivity.EXTRA_CUSTOM_VIEW_DENY_RES,customViewDenyRes);
+        intent.putExtra(TedPermissionActivity.EXTRA_CONFIRM_BUTTON_COLOR, confirmButtonColor);
 
 
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
