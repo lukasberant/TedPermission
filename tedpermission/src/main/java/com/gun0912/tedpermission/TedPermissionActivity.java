@@ -42,6 +42,7 @@ public class TedPermissionActivity extends AppCompatActivity {
     public static final String EXTRA_DENIED_DIALOG_CLOSE_TEXT = "denied_dialog_close_text";
     public static final String EXTRA_CUSTOM_VIEW_RES = "custom_view_res";
     public static final String EXTRA_CUSTOM_VIEW_DENY_RES = "custom_view_deny_res";
+    public static final String EXTRA_CONFIRM_BUTTON_COLOR = "confirm_button_color";
 
     String rationale_message;
     String denyMessage;
@@ -89,6 +90,7 @@ public class TedPermissionActivity extends AppCompatActivity {
             deniedCloseButtonText = savedInstanceState.getString(EXTRA_DENIED_DIALOG_CLOSE_TEXT);
             customViewRes = savedInstanceState.getInt(EXTRA_CUSTOM_VIEW_RES, 0);
             customViewDenyRes = savedInstanceState.getInt(EXTRA_CUSTOM_VIEW_DENY_RES, 0);
+            mConfirmButtonColor = savedInstanceState.getInt(EXTRA_CONFIRM_BUTTON_COLOR, 0);
 
 
             settingButtonText = savedInstanceState.getString(EXTRA_SETTING_BUTTON_TEXT);
@@ -105,7 +107,8 @@ public class TedPermissionActivity extends AppCompatActivity {
             settingButtonText = intent.getStringExtra(EXTRA_SETTING_BUTTON_TEXT);
             customViewRes = intent.getIntExtra(EXTRA_CUSTOM_VIEW_RES, 0);
             customViewDenyRes = intent.getIntExtra(EXTRA_CUSTOM_VIEW_DENY_RES, 0);
-
+            mConfirmButtonColor = intent.getIntExtra(EXTRA_CONFIRM_BUTTON_COLOR, 0);
+       
 
         }
 
@@ -124,6 +127,7 @@ public class TedPermissionActivity extends AppCompatActivity {
         outState.putString(EXTRA_SETTING_BUTTON_TEXT, settingButtonText);
         outState.putInt(EXTRA_CUSTOM_VIEW_RES, customViewRes);
         outState.putInt(EXTRA_CUSTOM_VIEW_DENY_RES, customViewDenyRes);
+        outState.putInt(EXTRA_CONFIRM_BUTTON_COLOR, mConfirmButtonColor);
 
         super.onSaveInstanceState(outState);
     }
@@ -246,21 +250,24 @@ public class TedPermissionActivity extends AppCompatActivity {
 
 
     private void showRationaleDialog(final ArrayList<String> needPermissions) {
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setView(customViewRes);
+        builder.setNegativeButton(rationaleConfirmText, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                requestPermissions(needPermissions);
 
-        new AlertDialog.Builder(this)
-                .setView(customViewRes)
-                .setCancelable(false)
+            }
+        });
 
-                .setNegativeButton(rationaleConfirmText, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        requestPermissions(needPermissions);
-
-                    }
-                })
-                .show();
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+        Button b = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        if (b != null) {
+            b.setTextColor(mConfirmButtonColor);
+        }
         isShownRationaleDialog = true;
-
 
     }
 
@@ -320,7 +327,16 @@ public class TedPermissionActivity extends AppCompatActivity {
             });
 
         }
-        builder.show();
+         AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+        Button bPos = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        if (bPos != null) {
+            bPos.setTextColor(mConfirmButtonColor);
+        }
+        Button bNeg = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        if (bNeg != null) {
+            bNeg.setTextColor(mConfirmButtonColor);
+        }
     }
 
     public void showWindowPermissionDenyDialog() {
