@@ -287,7 +287,7 @@ public class TedPermissionActivity extends AppCompatActivity {
         if(customViewDenyRes==0){
         builder.setMessage(denyMessage)
                 .setCancelable(false)
-                .setPositiveButton(deniedCloseButtonText, new DialogInterface.OnClickListener() {
+                .setNegativeButton(deniedCloseButtonText, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         permissionDenied(deniedPermissions);
